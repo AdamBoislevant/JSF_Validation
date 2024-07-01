@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio</title>
+  <h:outputStylesheet library="css" name="style.css" />
+  <h:outputStylesheet library="css" name="index.css" />
+</h:head>
+<h:body>
+  <ui:include src="header.xhtml"/>
+
+  <!-- Homepage -->
+  <section class="part">
+    <h2>Introduction</h2>
+    <div class="container" id="intro">
+      <p id="introduction">
+        My name is Adam BOISLEVANT-FLEURY, I'm a 21 years old french student
+        in fourth year of engineering school at CY Tech located in Cergy(north
+        of Paris). Actually in university exchange programme in Northeastern
+        university in Shenyang. My major is Software engineering and I would
+        like specify my last year in visual computing.
+      </p>
+      <h:graphicImage library="images" name="face.jpg" styleClass="contextImg"/>
+    </div>
+  </section>
+
+  <section class="part">
+    <h2>Interests</h2>
+    <div class="container">
+      <h:graphicImage library="images" name="Adam-Ondra-Canada.jpg" styleClass="contextImg"/>
+      <p id="Interests">
+        I’m passionate about technology, especially AI and 3D simulation, and
+        I love exploring new advancements in these fields. I enjoy doing
+        sports like calisthenics or workout. Outdoor activities like hiking
+        and climbing keep me active. Traveling to experience different
+        cultures and broaden my perspective is something I cherish.
+      </p>
+    </div>
+  </section>
+
+  <section class="part">
+    <h2>Experiences</h2>
+    <div class="container">
+      <p id="Experiences">
+        I have already realized 3 websites as part of my studies. all of them
+        were e-shops or marketplaces. Also I created a webApp when I was doing
+        my internship in Generali VIE, this webApp was meant to prompt the SSO
+        token of the user depending of his/her environment (production,
+        pre-production,...).
+      </p>
+      <h:graphicImage library="images" name="generali.jpg" styleClass="contextImg"/>
+    </div>
+  </section>
+
+  <section class="part">
+    <h2>Skills</h2>
+    <div class="container">
+      <h:graphicImage library="images" name="css.jpg" styleClass="contextImg"/>
+      <p id="skills">
+        I have skills in multiple coding languages such as Python, C, Java,
+        prolog and shell scripts. Concerning web development, I already have
+        worked with HTML, CSS, PHP, JavaScript especially next.JS and AJAX,
+        JEE and its frameworks Spring/Springboot and Angular. I also have
+        manipulated SQL databases
+      </p>
+    </div>
+  </section>
+
+  <section class="part">
+    <h2>Career goals</h2>
+    <div class="container">
+      <p id="career goals">
+        My goal for now is to get a job in the visual computing sector. I
+        would be glad to work on simulations using unreal engines for example.
+        I don't have a lot of expectations as long as my work is stimulating
+        and interesting.
+      </p>
+      <h:graphicImage library="images" name="unrealEngine.png" styleClass="contextImg"/>
+    </div>
+  </section>
+
+  <section class="part">
+    <h2>Projects</h2>
+    <div class="container" id="project-list">
+<!--      create a link element for each project in the bean-->
+      <ui:repeat value="#{projectBean.projects}" var="project">
+        <div class="image">
+          <div class="centered">
+            #{project.title}
+          </div>
+            <a href="./project.xhtml?title=#{project.title}">
+              <h:graphicImage value="#{project.presentationPic}" alt="#{project.title}" styleClass="project" />
+            </a>
+        </div>
+      </ui:repeat>
+    </div>
+  </section>
+
+  <ui:include src="footer.xhtml"/>
+</h:body>
+</html>

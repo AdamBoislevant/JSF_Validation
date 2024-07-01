@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Project</title>
+    <h:outputStylesheet library="css" name="style.css" />
+    <h:outputStylesheet library="css" name="project.css" />
+</h:head>
+<h:body>
+    <ui:include src="header.xhtml"/>
+
+    <section class="part" id="editProjectSection">
+        <h2>Edit Project</h2>
+        <h:form>
+            <!-- Input fields bound to managed bean properties -->
+            <h:outputText value="Fix Errors Marked Below" styleClass="error"
+                          rendered="#{not empty facesContext.messageList}"/><br/>
+            <h:outputLabel for="title">Title</h:outputLabel>
+            <h:message styleClass="error" for="title"/><br/>
+            <h:inputText id="title" value="#{projectBean.editedProject.title}"
+                         required="true"
+                         requiredMessage="Title needed"
+                         validatorMessage="Title must be 20 characters long or shorter">
+                <f:validateLength maximum="20"/>
+            </h:inputText>
+            <br/>
+            <h:outputLabel for="companyName">Company name</h:outputLabel>
+            <h:message styleClass="error" for="companyName"/><br/>
+            <h:inputText id="companyName" value="#{projectBean.editedProject.companyName}"
+                         required="true"
+                         requiredMessage="Company name needed"/>
+            <br/>
+            <h:outputLabel for="keywords">Keywords</h:outputLabel>
+            <h:message styleClass="error" for="keywords"/><br/>
+            <h:inputText id="keywords" value="#{projectBean.editedProject.keywords}"
+                         required="true"
+                         requiredMessage="At least one keyword needed"/><br/>
+            <h:outputLabel for="summary">Summary</h:outputLabel>
+            <h:message styleClass="error" for="summary"/><br/>
+            <h:inputTextarea id="summary" value="#{projectBean.editedProject.summary}"
+                             styleClass="textArea"
+                             required="true"
+                             requiredMessage="Summary of the project needed"
+                             validatorMessage="Summary should be at least 20 characters long">
+                <f:validateLength minimum="20"/>
+            </h:inputTextarea>
+            <br/>
+            <h:outputLabel for="description">Description</h:outputLabel>
+            <h:message styleClass="error" for="description"/><br/>
+            <h:inputTextarea id="description" value="#{projectBean.editedProject.description}"
+                             styleClass="textArea"
+                             required="true"
+                             requiredMessage="Description needed"
+                             validatorMessage="Description should be at least 20 characters long">
+                <f:validateLength minimum="20"/>
+            </h:inputTextarea>
+            <br/>
+
+            <!-- Image URLs -->
+            <h:outputLabel for="companyPic">Company Image</h:outputLabel><br/>
+            <h:selectOneMenu id="companyPic" value="#{projectBean.editedProject.companyPic}">
+                <f:selectItems value="#{projectBean.imageList}" />
+                <f:selectItems itemValue="" itemLabel="None"/>
+            </h:selectOneMenu>
+            <br/>
+            <h:outputLabel for="descriptionPic">Description Image</h:outputLabel><br/>
+            <h:selectOneMenu id="descriptionPic" value="#{projectBean.editedProject.descriptionPic}">
+                <f:selectItems value="#{projectBean.imageList}" />
+                <f:selectItems itemValue="" itemLabel="None"/>
+            </h:selectOneMenu>
+            <br/><br/>
+            <!-- Save Changes Button (redirects back to project page if saved)-->
+            <h:commandButton value="Save Changes" action="#{projectBean.saveChanges()}"/>
+
+            <!-- Cancel Button (reload the page) -->
+            <h:commandButton value="Cancel" action="#{projectBean.cancelChanges()}" immediate="true"/>
+        </h:form>
+    </section>
+
+    <ui:include src="footer.xhtml"/>
+</h:body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project</title>
+    <h:outputStylesheet library="css" name="style.css" />
+    <h:outputStylesheet library="css" name="project.css" />
+</h:head>
+
+<h:body>
+    <ui:include src="header.xhtml"/>
+<!--    Call the init method-->
+    <f:metadata>
+        <f:event listener="#{projectBean.init()}"  type="preRenderView"/>
+    </f:metadata>
+
+<!--    Generates project page from the selected project's data-->
+    <section class="part">
+        <h2 id="project-title">#{projectBean.selectedProject.title}</h2>
+        <p id="company-name">Company: #{projectBean.selectedProject.companyName}</p>
+        <p id="keywords">Keywords: #{projectBean.selectedProject.keywords}</p>
+        <div class="container">
+            <p id="project-summary">#{projectBean.selectedProject.summary}</p>
+            <h:graphicImage value="#{projectBean.selectedProject.companyPic}" styleClass="contextImg" id="company-pic" alt="Company Image" />
+        </div>
+        <div class="container">
+            <div id="project-description">
+                <h:outputText value="#{projectBean.selectedProject.description}" escape="false"/>
+            </div>
+        </div>
+        <h:graphicImage value="#{projectBean.selectedProject.descriptionPic}" id="description-pic" alt="Description Image" />
+        <br/><br/>
+        <h:form>
+<!--            Button redirecting to the edit-project's page-->
+            <h:commandButton value="Edit project" action="#{projectBean.redirectToEditProject()}"/>
+        </h:form>
+    </section>
+
+    <ui:include src="footer.xhtml"/>
+</h:body>
+</html>

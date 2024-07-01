@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+    <meta charset="UTF-8" />
+    <title>Header</title>
+<!--    <h:outputStylesheet library="css" name="header.css"/>-->
+    <link rel="stylesheet" href="resources/css/header.css" />
+</h:head>
+<h:body>
+<header>
+    <!-- the title is a link to the homepage -->
+    <a href="index.xhtml">
+        <h1>Portfolio: Adam BOISLEVANT-FLEURY</h1>
+    </a>
+    <!-- Navigation bar -->
+    <nav id="navbar">
+        <h:link value="Home" outcome="index.xhtml" id="home"/>
+<!--        create a link button for each project-->
+        <ui:repeat value="#{projectBean.projects}" var="project">
+            <a href="./project.xhtml?title=#{project.title}">#{project.title}</a>
+        </ui:repeat>
+    </nav>
+</header>
+</h:body>
+</html>
